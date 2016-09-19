@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Load a form to a table</title>
+  <meta></meta>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+  // function writeRow
+  function writeRow(first,last,email,phone) {
+    $( 'table' ).append("<tr><td>"+first+"</td><td>"+last+"</td><td>"+email+"</td><td>"+phone+"</td></tr>")
+  }
+  function validateData() {
+    return(true);
+  }
+  $(document).ready(function(){
+    console.log("jQuery Loaded")
+    $('form').submit(
+    function() {
+        //retrieve(first,last,email,phone);
+        var f = $( ".first" ).val();
+        var l = $( ".last" ).val();
+        var e = $( ".email" ).val();
+        var p= $( ".phone" ).val();
+        if (validateData()) {
+          $("#input input").val("");
+          console.log("Writing to table",f,l,e,p)
+          writeRow(f,l,e,p);
+        }
+        else {
+          console.log("Errors in form data",f,l,e,p)
+        }
+    return(false)
+  });
+  });
+</script>
+</head>
+<body>
+  <div id="wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            First Name
+          </th>
+          <th>
+            Last Name
+          </th>
+          <th>
+            e-Mail address
+          </th>
+          <th>
+            Phone
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <form id="input">
+      <h2>Add a User</h2>
+      <span>First Name:</span> <input class="first" type="text" name="first" placeholder="first name"/> <br>
+      <span>Last Name:</span><input class="last" type="text" name="last" placeholder="last name"/><br>
+      <span>e-Mail Address:</span><input class="email" type="text" name="email" placeholder="you@domain.com"/><br>
+      <span>Phone:</span><input class="phone" type="text" name="phone" placeholder="999-999-9999"/>
+      <button>Add</button>
+    </form>
+  </div>
+</body>
+</html>
